@@ -1,0 +1,16 @@
+a = Acceleration
+F = Force
+m = Mass
+w = Weight
+v = Velocity
+s = Speed
+d = Distance
+L = Length
+V = Volume
+W = Width
+H = Height
+A = Area
+T = Temperature
+x = x
+y = y
+t = time
