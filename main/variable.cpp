@@ -4,20 +4,16 @@ using namespace std;
 
 class Variable {
 public:
-    Variable();
-    Variable(string s);
+    Variable(string name = "", int value = 1);
 private:
     string name;
+    int value;
 };
 
-Variable::Variable() {
-    name = "";
+Variable::Variable(string name, int value) {
+    this->name = name;
+    this->value = value;
 }
-
-Variable::Variable(string s) {
-    name = s;
-}
-
 
 int main() {
     cout << "test" << endl;
