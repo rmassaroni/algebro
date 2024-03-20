@@ -12,25 +12,26 @@ public class Variable(var name: String = "") {
         printInfo()
     }
 
-    fun printInfo() {
+    public fun printInfo() {
         println(name)
         println(coef)
         println(term)
         println(exp)
     }
     
-    fun getCoef(input: String): Int {
+    public fun getCoef(input: String): Int {
         val regex = Regex("""^\d+""")
         val matchResult = regex.find(input)
         return matchResult?.value?.toIntOrNull() ?: 1
     }
 
-    fun getTerm(input: String): String {
-        val regex = Regex("""^\d+\s*\^?\s*\d*\s*""")
-        return input.replaceFirst(regex, "").trim()
+    public fun getTerm(input: String): String {
+        val regex = Regex("""^\d+\s*([^0-9^]+)""")
+        val matchResult = regex.find(input)
+        return matchResult?.groupValues?.getOrNull(1)?.trim() ?: input   
     }
 
-    fun getExp(input: String): String {
+    public fun getExp(input: String): String {
         val regex = Regex("""\^\s*([^ ]+)""")
         val matchResult = regex.find(input)
         return matchResult?.groupValues?.getOrNull(1) ?: "1"
