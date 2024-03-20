@@ -1,4 +1,4 @@
-package kot
+package main
 
 import kot.Variable
 

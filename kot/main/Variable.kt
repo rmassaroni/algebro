@@ -1,4 +1,4 @@
-package kot
+package main
 
 public class Variable(var name: String = "") {
     public var coef: Int
