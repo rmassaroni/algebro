@@ -6,11 +6,15 @@ import java.util.Stack
 
 public class Expression(var name: String = "", var vars: ArrayList<Variable> = ArrayList()) {
     public var subExpressions: ArrayList<Expression> = ArrayList()
+    public var isExpressions: ArrayList<Boolean> = ArrayList()
     
     init {
         if(vars.size == 0)
             setVars()
         name = cleanName()
+        if(name.indexOf("(") > -1)
+            for(p in parseExpression(name))
+                subExpressions.add(Expression(p))
         printInfo()
     }
 
@@ -32,7 +36,8 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
     }
 
     public fun setVars() {
-        for(split in name.split('*'))
+        val regex = Regex("""\([^()]*\)""")
+        for(split in name.split('*').filter {!regex.containsMatchIn(it)})
             vars.add(Variable(split.trim()))
     }
 
@@ -91,5 +96,37 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
         }
 
         return terms
+    }
+
+    fun getOrderOfComponents(expression: String): ArrayList<Boolean> {
+        val order = ArrayList<Boolean>()
+            val stack = Stack<Char>()
+            var isInSubExpression = false
+
+            for (char in expression) {
+                when (char) {
+                    '(' -> {
+                        stack.push(char)
+                            if (!isInSubExpression) {
+                                isInSubExpression = true
+                                order.add(true) // Start of a subexpression
+                            }
+                    }
+                    ')' -> {
+                        stack.pop()
+                            if (stack.isEmpty()) {
+                                isInSubExpression = false
+                                order.add(true) // End of a subexpression
+                            }
+                    }
+                    '*' -> {
+                        if (stack.isEmpty())
+                            order.add(false) // Variable
+                        else
+                            order.add(true) // Inside subexpression
+                    }
+                }
+            }
+        return order
     }
 }
