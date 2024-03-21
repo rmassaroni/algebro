@@ -18,6 +18,15 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
         return vars //unfinished
     }
 
+    public fun getTerms(): ArrayList<String> {
+        var terms: ArrayList<String> = ArrayList()
+        for(v in vars) {
+            if(terms.contains(v.term) == false)
+                terms.add(v.term)
+        }
+        return terms
+    }
+
     public fun simplify() {
         for(v in vars) {
             

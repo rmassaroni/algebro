@@ -1,6 +1,6 @@
 package main
 
-public class Variable(var name: String = "", var coef: Int = 1, var exp: String = "1") {
+public class Variable(var name: String = "", var coef: Int = 1, var exp: String = "1", var isKnown: Boolean = false) {
     public var term: String
 
     init {
