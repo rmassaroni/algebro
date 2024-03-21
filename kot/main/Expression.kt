@@ -5,6 +5,7 @@ import main.Variable
 import java.util.Stack
 
 public class Expression(var name: String = "", var vars: ArrayList<Variable> = ArrayList()) {
+    public var subExpressions: ArrayList<Expression> = ArrayList()
     
     init {
         if(vars.size == 0)
@@ -22,8 +23,11 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
 
     public fun cleanName(): String {
         var n: String = ""
-        for(v in vars)
-            n += "*" + v.name
+        for(v in vars) {
+            if(n != "")
+                n += "*"
+            n += "" + v.name
+        }
         return n
     }
 

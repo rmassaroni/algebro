@@ -9,6 +9,7 @@ fun main() {
     println("${add(v1, v2).name}")
 
     val vars1 = Expression(v1)
+    val vars2 = Expression("2x*3y*4z")
 }
 
 fun add(var1: Variable, var2: Variable): Variable {
