@@ -6,9 +6,15 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
     
     init {
         name = cleanName(name)
+        printInfo()
     }
 
     public constructor(v: Variable) : this("", ArrayList<Variable>().apply{add(v)})
+
+    public fun printInfo() {
+        println(name)
+        println(getTerms())
+    }
 
     public fun cleanName(n: String): String {
         return n //unfinished

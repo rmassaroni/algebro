@@ -7,6 +7,8 @@ fun main() {
     val v2 = Variable("4x")
     println("${v1.name}, ${v2.name}")
     println("${add(v1, v2).name}")
+
+    val vars1 = Expression(v1)
 }
 
 fun add(var1: Variable, var2: Variable): Variable {
