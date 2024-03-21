@@ -1,16 +1,19 @@
 package main
 
-public class Variable(var name: String = "") {
-    public var coef: Int
+public class Variable(var name: String = "", var coef: Int = 1, var exp: String = "1") {
     public var term: String
-    public var exp: String
 
     init {
-        coef = getCoef(name)
+        coef *= getCoef(name)
         term = getTerm(name)
         exp = getExp(name)
+        name = "$coef" + term + "^" + exp
         printInfo()
     }
+
+    public constructor() : this("", 1)
+    public constructor(name: String) : this(name, 1)
+    public constructor(coef: Int) : this("", coef)
 
     public fun printInfo() {
         println(name)

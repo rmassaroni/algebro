@@ -3,6 +3,13 @@ package main
 import main.Variable
 
 fun main() {
-    val variable = Variable("2x^5")
-    println("${variable.name}")
+    val v1 = Variable("2x^5")
+    val v2 = Variable("4x")
+    println("${v1.name}, ${v2.name}")
+    println("${add(v1, v2).name}")
+}
+
+fun add(var1: Variable, var2: Variable): Variable {
+    var var3 = Variable(var1.term, var1.coef + var2.coef, var1.exp)
+    return var3
 }
