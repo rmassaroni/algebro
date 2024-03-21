@@ -5,7 +5,9 @@ import main.Variable
 public class Expression(var name: String = "", var vars: ArrayList<Variable> = ArrayList()) {
     
     init {
-        name = cleanName(name)
+        if(vars.size == 0)
+            setVars()
+        name = cleanName()
         printInfo()
     }
 
@@ -16,12 +18,16 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
         println(getTerms())
     }
 
-    public fun cleanName(n: String): String {
-        return n //unfinished
+    public fun cleanName(): String {
+        var n: String = ""
+        for(v in vars)
+            n += "*" + v.name
+        return n
     }
 
-    public fun setVars(n: String): ArrayList<Variable> {
-        return vars //unfinished
+    public fun setVars() {
+        for(split in name.split('*'))
+            vars.add(Variable(split.trim()))
     }
 
     public fun getTerms(): ArrayList<String> {
