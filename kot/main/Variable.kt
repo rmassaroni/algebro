@@ -39,4 +39,8 @@ public class Variable(var name: String = "", var coef: Int = 1, var exp: String 
         val matchResult = regex.find(input)
         return matchResult?.groupValues?.getOrNull(1) ?: "1"
     }
+
+    public fun reciprocal(): Variable {
+        return Variable(name, coef, exp)
+    }
 }

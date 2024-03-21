@@ -13,4 +13,22 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
     public fun cleanName(n: String): String {
         return n //unfinished
     }
+
+    public fun setVars(n: String): ArrayList<Variable> {
+        return vars //unfinished
+    }
+
+    public fun simplify() {
+        for(v in vars) {
+            
+        }
+    }
+
+    public fun multiply(v: Variable) {
+        vars.add(v)
+    }
+
+    public fun divide(v: Variable) {
+        vars.add(v.reciprocal())
+    }
 }
