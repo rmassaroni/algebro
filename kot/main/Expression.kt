@@ -2,6 +2,8 @@ package main
 
 import main.Variable
 
+import java.util.Stack
+
 public class Expression(var name: String = "", var vars: ArrayList<Variable> = ArrayList()) {
     
     init {
@@ -32,10 +34,9 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
 
     public fun getTerms(): ArrayList<String> {
         var terms: ArrayList<String> = ArrayList()
-        for(v in vars) {
+        for(v in vars)
             if(terms.contains(v.term) == false)
                 terms.add(v.term)
-        }
         return terms
     }
 
@@ -51,5 +52,40 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
 
     public fun divide(v: Variable) {
         vars.add(v.reciprocal())
+    }
+
+    public fun parseExpression(expression: String): ArrayList<String> {
+        val terms = ArrayList<String>()
+        val stack = Stack<Char>()
+
+        var term = StringBuilder()
+
+        for (char in expression) {
+            when (char) {
+                '(' -> stack.push(char)
+                ')' -> {
+                    stack.pop()
+                    if (stack.isEmpty()) {
+                        terms.add(term.toString())
+                        term = StringBuilder()
+                    }
+                }
+                else -> {
+                    if (stack.isEmpty()) {
+                        if (char == '+' || char == '-') {
+                            terms.add(term.toString())
+                            term = StringBuilder()
+                        }
+                    }
+                    term.append(char)
+                }
+            }
+        }
+
+        if (term.isNotEmpty()) {
+            terms.add(term.toString())
+        }
+
+        return terms
     }
 }
