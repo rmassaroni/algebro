@@ -9,7 +9,7 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
         printInfo()
     }
 
-    public constructor(v: Variable) : this("", ArrayList<Variable>().apply{add(v)})
+    public constructor(v: Variable) : this(v.name, ArrayList<Variable>().apply{add(v)})
 
     public fun printInfo() {
         println(name)
