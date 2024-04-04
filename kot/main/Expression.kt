@@ -15,6 +15,7 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
         if(name.indexOf("(") > -1)
             for(p in parseExpression(name))
                 subExpressions.add(Expression(p))
+        isExpressions = getOrderOfComponents(name)
         printInfo()
     }
 
@@ -23,6 +24,18 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
     public fun printInfo() {
         println(name)
         println(getTerms())
+        //println(vars)
+        println(isExpressions)
+    }
+
+    public fun update() {
+        if(vars.size == 0)
+            setVars()
+        name = cleanName()
+        if(name.indexOf("(") > -1)
+            for(p in parseExpression(name))
+                subExpressions.add(Expression(p))
+        isExpressions = getOrderOfComponents(name)
     }
 
     public fun cleanName(): String {
@@ -91,9 +104,8 @@ public class Expression(var name: String = "", var vars: ArrayList<Variable> = A
             }
         }
 
-        if (term.isNotEmpty()) {
+        if (term.isNotEmpty())
             terms.add(term.toString())
-        }
 
         return terms
     }
