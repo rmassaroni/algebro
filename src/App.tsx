@@ -12,10 +12,6 @@ function App() {
     const solution = Algebrite.roots(equation).toString();
     console.log(`Solutions for x: ${solution}`);
 
-    const func = 'x^3 + 3*x^2 + x';
-    const derivative = Algebrite.diff(func, 'x').toString();
-    console.log(`Derivative: ${derivative}`);
-
     const integral = Algebrite.integral('x^2', 'x').toString();
     console.log(`Integral: ${integral}`);
 
